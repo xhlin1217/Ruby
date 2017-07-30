@@ -1,3 +1,5 @@
+# irb in cmd
+
 
 # everythign in ruby are objectm except those variable
 x = 1
@@ -128,3 +130,109 @@ array1 += [100,200]
 puts array1.inspect			# [99, 2, 3, 4, 3, -1, 10, 100, 200]
 array1 -= [100,200]
 puts array1.inspect			# [99, 2, 3, 4, 3, -1, 10]
+
+
+# Hashes: key-value pair
+# hash(label matter) vs array(order matter)
+person = {'firstname' => 'tim', 'lastname' => 'lin'}
+puts person['firstname']	# tim
+# puts person.index('lin')	# working in current version, but it might remove in feature version
+puts person					# {"firstname"=>"tim", "lastname"=>"lin"}
+mixed = {1 => ['a','b'], 'hello' => 'world', [10,20] => 'top'}
+puts mixed['hello']			# world
+puts mixed[[10, 20]]		# top
+puts person.keys			# firstname, lastname; return all the keys from person
+puts person.values			# tim, lin; return all the values from person
+puts person.length			# 2, return the size from person
+puts person.size			# 2, return the size from person
+array = person.to_a			# return all the key values pair to array key value pair
+puts array.inspect			# [["firstname", "tim"], ["lastname", "lin"]]
+puts person						# {"firstname"=>"tim", "lastname"=>"lin"}
+person['age'] = 20				# insert or change element in hash
+person['firstname'] = 'timmy'	# insert or change element in hash
+puts person						# {"firstname"=>"timmy", "lastname"=>"lin", "age"=>20}
+person.clear				# clear hash 
+puts person					#{}
+
+
+# symbols
+# a symbol is a label used to identify a piece of data
+# a symbol is only stored in memory one time
+test = 'hello world'
+puts test.object_id		# using the variable to create a new object id
+puts 'test'.object_id	# using the string to create a new object id
+puts "test".object_id	# using the string to create a new object id
+puts test.object_id		# using the variable to create a new object id
+test = "i am the best"
+puts test.object_id		# using the variable value(after value change) to create a new object id
+symbolHash = {:firstname => 'tim', :lastname => 'lin'}
+puts symbolHash['firstname']	# return nil, this is not hash map
+puts symbolHash[:firstname]		# return tim, this is in symbol hash format
+
+
+
+# Boolean - True/False
+# ==		equal
+# !			not
+# !=		not equal
+# <			less than
+# <=		less than or equal to
+# >			greate than
+# >=		greate then or equal to 
+# &&		and
+# ||		or
+
+# number in boolean always true
+puts !0		# false
+puts !1		# false
+puts !2		# false	
+# nil = false
+puts !nil 	# ture
+# nil not equal to false
+puts nil == false 
+
+
+# Ranges
+# array [1,2,3,...,100,101] also equal to range(1,101)
+# inclusive range 1..10 => [1,2,3,4,5,6,7,8,9,10]
+# exclusive range 1...10 => [1,2,3,4,5,6,7,8,9]
+x = 1..10 		# 1,2,3,4,5,6,7,8,9,10
+y = 1...10		# 1,2,3,4,5,6,7,8,9
+
+puts x.class 	# Range class
+puts y.class 	# Range class
+puts x.begin 	# 1
+puts x.first 	# 1
+puts x.end 		# 10
+puts x.last 	# 10
+puts x.include?(1)		# true
+puts x.include?(10)		# true
+
+puts y.begin 	# 1
+puts y.first 	# 1
+puts y.end 		# 10
+puts y.last 	# 10
+puts y.include?(1)		# true
+puts y.include?(10)		# false
+
+# using the range function on array
+a = [*x]
+b = [*y]
+puts a.inspect		# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+puts b.inspect		# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+letters = 'a'..'e'
+letterArray = [*letters]
+puts letterArray.inspect	# ["a", "b", "c", "d", "e"]
+puts letters.include?('c')	# true
+puts letters.include?('j')	# false
+
+
+# Constants
+# (Warming Error), do not name the vairable start with capital letter, otherwise it will consider it as constant
+test = 1
+Test = 2	# ruby consider this variable as constant, warming error
+puts test
+puts Test
+test = 10
+Test = 20	# ruby consider this variable as constant, warming error
