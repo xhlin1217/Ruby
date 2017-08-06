@@ -12,86 +12,86 @@
 # end
 
 nums = [1,2,3,4,5]
-# 1.upto(nums.length) do |i|
-# 	print i.to_s + ' '
-# end
-# puts
-# nums.each {|num| print ((num * 20).to_s + " ")}
-# num = 1
-# nums.each {|num| print ((num * 20) + 1)}
-# puts
-# puts num
+1.upto(nums.length) do |i|
+	print i.to_s + ' '
+end
+puts
+nums.each {|num| print ((num * 20).to_s + " ")}
+num = 1
+nums.each {|num| print ((num * 20) + 1)}
+puts
+puts num
 
-# # common Ruby method - find, merge, collect, sort, inject
-# # find - first 4 method are work on range() and the last one works on array[]
+# common Ruby method - find, merge, collect, sort, inject
+# find - first 4 method are work on range() and the last one works on array[]
 
-# # find/detect => Object or nil
-# # return if ruby found the element meets the conditio
-# puts (1..10).find{|i|  i == 5}			# 5
-# puts (1..10).find{|i|  i % 3== 0}		# 3
-# puts (1..10).detect{|i|  i % 3== 0}		# 3
-# puts (1..10).detect{|i|  (1..10).include?(i * 3)}	# 1
-# puts (1..10).detect{|i|  i == 20}			# nil
+# find/detect => Object or nil
+# return if ruby found the element meets the conditio
+puts (1..10).find{|i|  i == 5}			# 5
+puts (1..10).find{|i|  i % 3== 0}		# 3
+puts (1..10).detect{|i|  i % 3== 0}		# 3
+puts (1..10).detect{|i|  (1..10).include?(i * 3)}	# 1
+puts (1..10).detect{|i|  i == 20}			# nil
 
-# # find_all/select => Array
-# # will return result as array
-# print (1..10).find_all{|i|  i % 3== 0}		# [3, 6, 9]
-# puts
-# print (1..10).find_all{|i|  i == 2}		# [2]
-# puts
+# find_all/select => Array
+# will return result as array
+print (1..10).find_all{|i|  i % 3== 0}		# [3, 6, 9]
+puts
+print (1..10).find_all{|i|  i == 2}		# [2]
+puts
 
-# # any? => Boolean
-# # does any element match in the set and return the boolean
-# print (1..10).any?{|i| i== 5}		# true
-# puts
+# any? => Boolean
+# does any element match in the set and return the boolean
+print (1..10).any?{|i| i== 5}		# true
+puts
 
-# # all? => Boolean
-# # does all the elements in the array meet the condition
-# print (1..10).all?{|i| i== 5}		# false
-# puts
+# all? => Boolean
+# does all the elements in the array meet the condition
+print (1..10).all?{|i| i== 5}		# false
+puts
 
-# # delete_if => Array
-# # only works on array, finds all the element meets the condition and delete them, then return
-# print [*1..10].delete_if {|i| i % 3 == 0 }		# [1, 2, 4, 5, 7, 8, 10]
-# puts
-
-
-
-# # merge
-# hash1 = {'a' => 111, 'b' => 222}
-# hash2 = {'b' => 333, 'c' => 444}
-# # in the following code the value of hash1 and hash2 will change after each merge
-# puts hash1.merge(hash2)		# {"a"=>111, "b"=>333, "c"=>444}
-# puts hash2.merge(hash1)		# {"b"=>222, "c"=>444, "a"=>111}
-# puts hash2.merge(hash1)	{|key, old, new| new}	# {"b"=>222, "c"=>444, "a"=>111}
-# puts hash2.merge(hash1)	{|key, old, new| old}	# {"b"=>333, "c"=>444, "a"=>111}
-# puts hash2.merge(hash1)	{|key, old, new| old * 5}	# {"b"=>1665, "c"=>444, "a"=>111}
-# puts hash1.merge(hash2) {|k, o, n| o < n ? o : n}	# {"a"=>111, "b"=>222, "c"=>444}
-# hash1 = {'a' => 111, 'b' => 222}
-# hash2 = {'b' => 333, 'c' => 444}
-# hash1.merge!(hash2)		
-# puts hash1				# {"a"=>111, "b"=>333, "c"=>444}
-# puts hash2				# {"b"=>333, "c"=>444}
+# delete_if => Array
+# only works on array, finds all the element meets the condition and delete them, then return
+print [*1..10].delete_if {|i| i % 3 == 0 }		# [1, 2, 4, 5, 7, 8, 10]
+puts
 
 
 
-# # collect / map - works in arrays, hashes, and ranges
-# # always return result as array, no matter data goin as array, hash, or range, it will always outcome as array
-# # number of items in = number of items out, will fill up with nil
-# array = [1,2,3,4,5]
-# # excute every elements in the array into the local variable and do something
-# puts array.collect { |i| i + 1 }.inspect	# [2, 3, 4, 5, 6]
-# puts array.inspect							# [1, 2, 3, 4, 5]
-# fruits = ['apple', 'banana', 'orange']		
-# puts fruits.map {|fruit| fruit.capitalize}.inspect		# ["Apple", "Banana", "Orange"]
-# # following code will check is the element is equal the the condition, otherwise will return nil
-# puts fruits.map {|fruit| fruit.capitalize if fruit == 'banana'}.inspect		# [nil, "Banana", nil]
-# # following code will do what i expect on the last code statement
-# puts fruits.map { |fruit| fruit == 'banana' ? fruit.capitalize : fruit}.inspect		# ["apple", "Banana", "orange"]
-# # return [nil, nil, nil], because put/print statement will return nil
-# puts fruits.map {|fruit| puts fruit.capitalize}.inspect		# [nil, nil, nil]
-# # fruits never change values
-# puts fruits.inspect			# ["apple", "banana", "orange"]
+# merge
+hash1 = {'a' => 111, 'b' => 222}
+hash2 = {'b' => 333, 'c' => 444}
+# in the following code the value of hash1 and hash2 will change after each merge
+puts hash1.merge(hash2)		# {"a"=>111, "b"=>333, "c"=>444}
+puts hash2.merge(hash1)		# {"b"=>222, "c"=>444, "a"=>111}
+puts hash2.merge(hash1)	{|key, old, new| new}	# {"b"=>222, "c"=>444, "a"=>111}
+puts hash2.merge(hash1)	{|key, old, new| old}	# {"b"=>333, "c"=>444, "a"=>111}
+puts hash2.merge(hash1)	{|key, old, new| old * 5}	# {"b"=>1665, "c"=>444, "a"=>111}
+puts hash1.merge(hash2) {|k, o, n| o < n ? o : n}	# {"a"=>111, "b"=>222, "c"=>444}
+hash1 = {'a' => 111, 'b' => 222}
+hash2 = {'b' => 333, 'c' => 444}
+hash1.merge!(hash2)		
+puts hash1				# {"a"=>111, "b"=>333, "c"=>444}
+puts hash2				# {"b"=>333, "c"=>444}
+
+
+
+# collect / map - works in arrays, hashes, and ranges
+# always return result as array, no matter data goin as array, hash, or range, it will always outcome as array
+# number of items in = number of items out, will fill up with nil
+array = [1,2,3,4,5]
+# excute every elements in the array into the local variable and do something
+puts array.collect { |i| i + 1 }.inspect	# [2, 3, 4, 5, 6]
+puts array.inspect							# [1, 2, 3, 4, 5]
+fruits = ['apple', 'banana', 'orange']		
+puts fruits.map {|fruit| fruit.capitalize}.inspect		# ["Apple", "Banana", "Orange"]
+# following code will check is the element is equal the the condition, otherwise will return nil
+puts fruits.map {|fruit| fruit.capitalize if fruit == 'banana'}.inspect		# [nil, "Banana", nil]
+# following code will do what i expect on the last code statement
+puts fruits.map { |fruit| fruit == 'banana' ? fruit.capitalize : fruit}.inspect		# ["apple", "Banana", "orange"]
+# return [nil, nil, nil], because put/print statement will return nil
+puts fruits.map {|fruit| puts fruit.capitalize}.inspect		# [nil, nil, nil]
+# fruits never change values
+puts fruits.inspect			# ["apple", "banana", "orange"]
 
 
 # Sort - 
@@ -128,3 +128,33 @@ hashArray = hash1.to_a
 puts hashArray.inspect		# [["a", 222], ["b", 111], ["c", 333], ["d", 666]]
 puts hashArray.sort {|k,v| k[0] <=> v[0]}.inspect		# [["a", 222], ["b", 111], ["c", 333], ["d", 666]]
 puts hashArray.sort {|k,v| v[0] <=> k[0]}.inspect		# [["d", 666], ["c", 333], ["b", 111], ["a", 222]]
+
+
+# inject - Accumulator, memo 
+puts (1..10).inject{|memo, n| memo + n}
+# memo = 1
+# memo = memo + 2, memo = 2
+# memo = memo + 3, memo = 5
+# ...
+# memo = memo + 10, memo = 55
+array = [*1..10]
+puts array.inspect
+# in inject method memo will initialize memo set to the first number
+puts array.inject{|memo, n| memo + n}	# 55, memo will auto set to 1 then add up to 10
+puts array.inject(100){|memo, n| memo + n}	# 155, 100 is the initialize value of memo, then add up from 1 to 10
+puts array.inject(2){|memo, n| memo + n}	# 57, initial memo to 2, then add up from 1 to 10
+puts array.inject{|memo, n| memo * n}	# 3628800
+puts array.inject(2){|memo, n| memo + n}
+# following code, setting memo = 1, and excute each array value, 1+2, 1+3, 1+4, ... 1+10, and return memo = 1
+puts array.inject{|memo, n| puts memo + n; memo}	
+fruits = ['apple', 'orange', 'banana']	
+puts fruits.inject{|memo, n| memo + ', ' + n}	# apple, orange, banana
+# finding the longest word in fruits
+longestWord =  fruits.inject do |memo, fruit|
+	if memo.length > fruit.length
+		memo
+	else
+		fruit
+	end
+end
+puts longestWord	# banana
