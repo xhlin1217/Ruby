@@ -122,3 +122,4 @@ arr                       #=> [1, 2, 3]
 
 
 # Public Class Methods
+http://devdocs.io/ruby~2.3/array#method-i-last
