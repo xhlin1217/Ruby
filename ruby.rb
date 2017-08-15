@@ -6,6 +6,11 @@
 # p a.inspect		# "[1, 2, 3]"
 # puts a.inspect	# [1, 2, 3]
 
+
+# %w{foo bar} = ["foo", "bar"]
+
+
+
 # create array
 array = [1, 'two', 3.0]		#=> [1, "two", 3.0]
 ary = Array.new    #=> []
