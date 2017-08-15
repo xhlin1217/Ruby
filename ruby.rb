@@ -97,7 +97,7 @@ arr.uniq #=> [2, 5, 6, 556, 8, 9, 0, 123]
 
 # Iterating over Arrays
 arr = [1, 2, 3, 4, 5]
-arr.each { |a| print a -= 10, " " }
+# arr.each { |a| print a -= 10, " " }
 puts
 # prints: -9 -8 -7 -6 -5 #=> [1, 2, 3, 4, 5]
 # reverse_each which will iterate over the elements in the array in reverse order.
@@ -120,6 +120,12 @@ arr.select { |a| a > 3 }     #=> [4, 5, 6]
 arr.reject { |a| a < 3 }     #=> [3, 4, 5, 6]
 arr.drop_while { |a| a < 4 } #=> [4, 5, 6]
 arr                          #=> [1, 2, 3, 4, 5, 6]
+[1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
+
+a = %w{ a b c d e f }
+a.select { |v| v =~ /[aeiou]/ }  #=> ["a", "e"]
+
+
 # select! and reject! are the corresponding destructive methods to select and reject
 # Similar to select vs. reject, delete_if and keep_if have the exact opposite result when supplied with the same block:
 arr.delete_if { |a| a < 4 } #=> [4, 5, 6]
@@ -330,3 +336,252 @@ a.delete_at(99)   #=> nil
 # delete_if { |item| block } → ary 
 scores = [ 97, 42, 75 ]
 scores.delete_if {|score| score < 80 }   #=> [97]
+
+
+# drop(n) → new_ary : drop the first n item and return the rest of the elements in an array
+a = [1, 2, 3, 4, 5, 0]
+a.drop(3)             #=> [4, 5, 0]
+
+
+# drop_while { |obj| block } → new_ary 
+a = [1, 2, 3, 4, 5, 0]
+a.drop_while {|i| i < 3 }   #=> [3, 4, 5, 0]
+
+
+a = [ "a", "b", "c" ]
+# a.each {|x| print x, " -- " }	#=> a -- b -- c -- 
+puts 
+
+# array.empty? => return true or false, if the array is empty or not
+[].empty?   #=> true
+
+
+# eql?(other) → true or false => return true if both object are same object, otherwise return false
+arr1 = [1,2,3]
+arr2 = [1,2,3]
+arr1.eql?(arr1)		#=> true
+arr1.eql?(arr2)		#=> true
+arr1.eql?([4,5,6])	#=> false
+
+
+# featch: Tries to return the element at position index, but throws an IndexError exception if the referenced index lies outside of the array bounds.
+a = [ 11, 22, 33, 44 ]
+a.fetch(1)               #=> 22
+a.fetch(-1)              #=> 44
+a.fetch(4, 'cat')        #=> "cat"
+# a.fetch(100) { |i| puts "#{i} is out of bounds" }	#=> "100 is out of bounds"
+
+
+a = [ "a", "b", "c", "d" ]
+a.fill("x")              #=> ["x", "x", "x", "x"]
+a.fill("z", 2, 2)        #=> ["x", "x", "z", "z"]
+a.fill("y", 0..1)        #=> ["y", "y", "z", "z"]
+a.fill { |i| i*i }       #=> [0, 1, 4, 9]
+a.fill(-2) { |i| i*i*i } #=> [0, 1, 8, 27]
+
+
+# index: return the index value of the item in array
+a = [ "a", "b", "c" ]
+a.index("b")              #=> 1
+a.index("z")              #=> nil
+a.index { |x| x == "b" }  #=> 1
+
+
+# first(n)-> newArray: return first n item form array
+a = [ "q", "r", "s", "t" ]
+a.first     #=> "q"
+a.first(2)  #=> ["q", "r"]
+
+
+# flatten: combine multi-dimensional array into one
+s = [ 1, 2, 3 ]           #=> [1, 2, 3]
+t = [ 4, 5, 6, [7, 8] ]   #=> [4, 5, 6, [7, 8]]
+a = [ s, t, 9, 10 ]       #=> [[1, 2, 3], [4, 5, 6, [7, 8]], 9, 10]
+a.flatten                 #=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+a = [ 1, 2, [3, [4, 5] ] ]
+a.flatten(1)              #=> [1, 2, 3, [4, 5]]
+a.flatten	              #=> [1, 2, 3, [4, 5]]
+
+
+# array.include?(object) -> true/false : true if array contained object
+a = [ "a", "b", "c" ]
+a.include?("b")   #=> true
+a.include?("z")   #=> false
+
+
+# replace: replace array with another value
+a = [ "a", "b", "c", "d", "e" ]
+a.replace([ "x", "y", "z" ])   #=> ["x", "y", "z"]
+a                              #=> ["x", "y", "z"]
+
+
+a = %w{ a b c d }
+a.insert(2, 99)         #=> ["a", "b", 99, "c", "d"]
+a.insert(-2, 1, 2, 3)   #=> ["a", "b", 99, "c", 1, 2, 3, "d"]
+
+
+# array.join: combines the elements together
+[ "a", "b", "c" ].join        #=> "abc"
+[ "a", "b", "c" ].join("-")   #=> "a-b-c"
+
+
+# keep_if { |item| block } → ary 
+a = %w{ a b c d e f }
+a.keep_if { |v| v =~ /[aeiou]/ }  #=> ["a", "e"]
+
+
+# array.last: return the last item
+# array.last(n): return the last n item form the array
+a = [ "w", "x", "y", "z" ]
+a.last     #=> "z"
+a.last(2)  #=> ["y", "z"]
+
+
+# map { |item| block } → new_ary : get every item in array and apply the operation block one by one
+a = [1,2,3]
+a.map{|x| x**2}		#=> [1,4,9]
+
+
+# permutation 
+a = [1, 2, 3]
+a.permutation.to_a    #=> [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+a.permutation(1).to_a #=> [[1],[2],[3]]
+a.permutation(2).to_a #=> [[1,2],[1,3],[2,1],[2,3],[3,1],[3,2]]
+a.permutation(3).to_a #=> [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+a.permutation(0).to_a #=> [[]] # one permutation of length 0
+a.permutation(4).to_a #=> []   # no permutations of length 4
+
+
+
+# pop: pop off the last item and return it form the array, nil for empty array
+# pop(n): pop off the last n item and return it as array form the array
+a = [ "a", "b", "c", "d" ]
+a.pop     #=> "d"
+a.pop(2)  #=> ["b", "c"]
+a         #=> ["a"]
+
+
+# product(other_ary, ...) → new_ary 
+# product(other_ary, ...) { |p| block } → ary 
+# return an array of all combinations of elements from all arrays
+[1,2,3].product([4,5])     #=> [[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]]
+[1,2].product([1,2])       #=> [[1,1],[1,2],[2,1],[2,2]]
+[1,2].product([3,4],[5,6]) #=> [[1,3,5],[1,3,6],[1,4,5],[1,4,6],
+                           #     [2,3,5],[2,3,6],[2,4,5],[2,4,6]]
+[1,2].product()            #=> [[1],[2]]
+[1,2].product([])          #=> []
+
+
+# rassoc(obj) → element_ary or nil : searches through the arrat whose elements are also arrays
+a = [ [ 1, "one"], [2, "two"], [3, "three"], ["ii", "two"] ]
+a.rassoc("two")    #=> [2, "two"]
+a.rassoc("four")   #=> nil
+
+
+
+# reverse: return a new array containing it self ekements in reverse order:
+[ "a", "b", "c" ].reverse   #=> ["c", "b", "a"]
+[ 1 ].reverse               #=> [1]
+
+
+
+# rotate!(count=1) → ary : rotate self in place so that the element ar count comes first, ad return self
+a = [ "a", "b", "c", "d" ]
+a.rotate        #=> ["a", "b", "c", "d"]
+a.rotate!        #=> ["b", "c", "d", "a"]
+a                #=> ["b", "c", "d", "a"]
+a.rotate!(2)     #=> ["d", "a", "b", "c"]
+a.rotate!(-3)    #=> ["a", "b", "c", "d"]
+
+
+
+# sample: returning a random element from array or n elements form array
+a = [1,2,3,4,5,6,7]
+a.sample			#=> 4
+a.sample(4)       #=> [6, 4, 2, 5]
+
+
+# shift → obj or nil 
+# shift(n) → new_ary 
+# remove the first element or first n elements of self and return it, return nil if array is empty
+args = [ "-m", "-q", "filename" ]
+args.shift     #=> "-m"
+args           #=> ["-q", "filename"]
+
+args = [ "-m", "-q", "filename" ]
+args.shift(2)  #=> ["-m", "-q"]
+args           #=> ["filename"]
+
+
+
+
+# shuffled: return a new array with elements of self shuffled
+a = [1,2,3,4,5,6,7,8,9,10]
+a.shuffle 	# [5,2,3,9,6,1,8,7,4,10]
+a 			# [1,2,3,4,5,6,7,8,9,10]
+
+
+# slice: return subarray of array
+# slice(index) → obj or nil 
+# slice(start, length) → new_ary or nil 
+# slice(range) → new_ary or nil 
+a = [ "a", "b", "c" ]
+a.slice!(1)     #=> "b"
+a               #=> ["a", "c"]
+a.slice!(-1)    #=> "c"
+a               #=> ["a"]
+a.slice!(100)   #=> nil
+a               #=> ["a"]
+
+
+# array.sort -> return a new array
+a = [1,5,3,6,7,4,2]
+a 			# [1, 5, 3, 6, 7, 4, 2]
+a.sort		# [1, 2, 3, 4, 5, 6, 7]
+a 			# [1, 5, 3, 6, 7, 4, 2]
+
+
+# take_while { |obj| block } → new_ary 
+# take the item as long as it item meets the condition
+a = [1, 2, 3, 4, 5, 0]
+a.take_while { |i| i < 3 }  #=> [1, 2]
+
+
+# to_a → ary : convert the current object to array
+# to_ary → ary : convert the current object to array
+# to_h → hash : convert the current object to hash
+
+
+# transpose → new_ary matirx transpose
+a = [[1,2], [3,4], [5,6]]
+p a.transpose   #=> [[1, 3, 5], [2, 4, 6]]
+# [1,2]			[1,3,5]
+# [3,4]	==>		[2,4,6]
+# [5,6]
+
+
+# uniq → new_ary : remove all the duplicate item
+a = [ "a", "a", "b", "b", "c" ]
+a.uniq   # => ["a", "b", "c"]
+
+b = [["student","sam"], ["student","george"], ["teacher","matz"]]
+b.uniq { |s| s.first } # => [["student", "sam"], ["teacher", "matz"]]
+# Returns nil if no changes are made (that is, no duplicates are found).
+a = [ "a", "a", "b", "b", "c" ]
+a.uniq!   # => ["a", "b", "c"]
+
+b = [ "a", "b", "c" ]
+b.uniq!   # => nil
+
+c = [["student","sam"], ["student","george"], ["teacher","matz"]]
+c.uniq! { |s| s.first } # => [["student", "sam"], ["teacher", "matz"]]
+
+
+
+# values_at(selector, ...) → new_ary : return an array containing the elements in self corresponding to the given selector
+
+a = %w{ a b c d e f }
+a.values_at(1, 3, 5)          # => ["b", "d", "f"]
+a.values_at(1, 3, 5, 7)       # => ["b", "d", "f", nil]
+a.values_at(-1, -2, -2, -7)   # => ["f", "e", "e", nil]
+a.values_at(4..6, 3...6)      # => ["e", "f", nil, "d", "e", "f"]
