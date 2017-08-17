@@ -5,6 +5,12 @@
 # print - print something with no line return
 # gets - getting something back
 
+a = "abc\tdef"
+print a 	# abc	def
+puts a 		# abc	def
+p a 		# "abc\tdef"
+
+
 # chomp - remove any line ending with ("\n", "\t", "\r\n")
 puts "hello\n\t".chomp
 
