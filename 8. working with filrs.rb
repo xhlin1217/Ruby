@@ -4,6 +4,7 @@
 # puts - print something with a line return\n
 # print - print something with no line return
 # gets - getting something back
+# p - return the resurt as a string(with double qote)
 
 a = "abc\tdef"
 print a 	# abc	def
